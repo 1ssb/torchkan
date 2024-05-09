@@ -80,6 +80,7 @@ def quantize_and_evaluate(model, val_loader, criterion, save_path):
     evaluation_time = time.time() - start_time
     
     # Save the quantized model to the specified path
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
     torch.save(quantized_model.state_dict(), save_path)
     
     return quantized_val_loss / len(val_loader), quantized_val_accuracy / len(val_loader), evaluation_time
@@ -104,11 +105,15 @@ def train_and_validate(epochs=15):
     trainer = Trainer(model, device, trainloader, valloader, optimizer, scheduler, criterion)
     train_accuracies, val_accuracies = trainer.fit(epochs)
 
+    # Ensure the directory for model saving exists
+    model_save_dir = "./models"
+    os.makedirs(model_save_dir, exist_ok=True)
+
     # Save the trained model
-    torch.save(model.state_dict(), "original_model.pth")
+    torch.save(model.state_dict(), os.path.join(model_save_dir, "original_model.pth"))
 
     # Quantization and Evaluation of Quantized Model
-    quantized_loss, quantized_accuracy, quantized_time = quantize_and_evaluate(model, valloader, criterion, "quantized_model.pth")
+    quantized_loss, quantized_accuracy, quantized_time = quantize_and_evaluate(model, valloader, criterion, os.path.join(model_save_dir, "quantized_model.pth"))
     print(f"Quantized Model - Validation Loss: {quantized_loss:.4f}, Validation Accuracy: {quantized_accuracy:.4f}, Evaluation Time: {quantized_time:.4f} seconds")
 
     # Measure the time for evaluating the original model
