@@ -31,6 +31,12 @@ cd torchkan
 pip install -r requirements.txt
 ```
 
+Alternately PyPi install as:
+
+```bash
+pip install torchKAN
+```
+
 ### 2. Configure CUDA environment variables if they are not already set:
 
 ```bash
