@@ -4,7 +4,7 @@
 This project demonstrates the training, validation, and quantization of the KAN model using PyTorch with CUDA acceleration. The `torchkan` model evaluates performance on the MNIST dataset.
 ## Project Status: Under Development
 
-The KAN model has shown promising results amidst various GAMs since the 1980s. This implementation, inspired by various sources, achieves over 97% accuracy on the MNIST dataset. As this model is still under study, further exploration into its full capabilities is ongoing.
+The KAN model has shown promising results amidst various GAMs since the 1980s. This implementation, inspired by various sources, achieves over 97% accuracy, with eval time under 0.6 seconds on the MNIST dataset. As this model is still under study, further exploration into its full capabilities is ongoing.
 
 ## Prerequisites
 
@@ -80,10 +80,6 @@ If you use this project in your research or wish to refer to the baseline result
 ## Contributions
 
 Contributions are welcome. Please raise issues as necessary after commit "Fin.", scheduled end-June, 2024. The code is licensed under the MIT License.
-
-## How to cite
-
-
 
 ## References
 
