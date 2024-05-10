@@ -63,6 +63,21 @@ This script will train the model, validate it, and log performance metrics using
 
 For any inquiries or support, contact: Subhransu.Bhattacharjee@anu.edu.au
 
+## Cite this Project
+
+If you use this project in your research or wish to refer to the baseline results, please use the following BibTeX entry.
+
+```bibtex
+@misc{your_project_name,
+  author = {Subhransu S. Bhattacharjee},
+  title = {TorchKAN},
+  year = {2024},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/1ssb/torchkan/tree/main}}
+}
+
+
 ## Contributions
 
 Contributions are welcome. Please raise issues as necessary after commit "Fin.", scheduled end-June, 2024. The code is licensed under the MIT License.
