@@ -11,19 +11,17 @@ import torch.nn.functional as F
 class KAN(nn.Module):
     def __init__(
         self, 
-        layers_hidden,  # List of integers defining the number of neurons in each hidden layer
-        grid_size=5,  # The number of points in the B-spline grid
-        spline_order=3,  # The order of the B-spline (degree of polynomial plus one)
-        base_activation=nn.SiLU,  # Activation function to be applied to the input of the base linear operation
-        grid_range=[-1, 1]  # Range over which the B-spline grid is defined
+        layers_hidden,     # List of neurons per layer
+        grid_size=5,       # Points in B-spline grid
+        spline_order=3,    # Polynomial degree + 1 of B-spline
+        base_activation=nn.GELU,  # Activation function
+        grid_range=[-1, 1] # B-spline grid range
     ):
         super(KAN, self).__init__()
         self.layers_hidden = layers_hidden
         self.grid_size = grid_size
         self.spline_order = spline_order
-        self.scale_base = scale_base
-        self.scale_spline = scale_spline
-        self.base_activation = base_activation()  # Instantiate the activation function
+        self.base_activation = base_activation()  # Activation instance
         self.grid_range = grid_range
 
         # Initialize weights, scalers, and norms efficiently
@@ -77,7 +75,6 @@ class KAN(nn.Module):
             scaled_spline_weight = spline_weight * spline_scaler.unsqueeze(-1)
             spline_output = F.linear(bases.view(x.size(0), -1), scaled_spline_weight.view(spline_weight.size(0), -1))
 
-            # Sum the outputs from the base and spline transformations
-            x = base_output + spline_output
+            x = layer_norm(base_output + spline_output)
 
-        return x  # Return the final output after processing through all layers
+        return x
