@@ -1,24 +1,26 @@
-# torchkan
+# TorchKAN: Simplified KAN Model Evaluation
 
-**Under Development**
+This project demonstrates the training, validation, and quantization of the KAN model using PyTorch with CUDA acceleration. The `torchkan` model evaluates performance on the MNIST dataset, providing insights into the capabilities of Generalized Additive Models (GAMs).
 
+## Project Status: Under Development
 
-# TorchKAN: KAN Model Evaluation with PyTorch and CUDA
-
-This project demonstrates the training, validation, and quantization of the simplified KAN model using PyTorch, with CUDA acceleration for improved performance. The project builds the `torchkan` library to create and evaluate KAN models on the MNIST dataset, as a preliminary test.
+The KAN model has shown promising results amidst various GAMs since the 1980s. This implementation, inspired by various sources, achieves over 97% accuracy on the MNIST dataset. As this model is still under study, further exploration into its full capabilities is ongoing.
 
 ## Prerequisites
 
-Before you begin, ensure you have the following installed on your system:
-- Python (version 3.6 or higher)
-- CUDA Toolkit (corresponding to the CUDA version required by your PyTorch installation)
+Ensure you have the following installed on your system:
+
+- Python (version 3.9 or higher)
+- CUDA Toolkit (corresponding to your PyTorch installation's CUDA version)
 - cuDNN (compatible with your installed CUDA Toolkit)
 
-## Installation (Tested on MacOS and Linux)
+## Installation
+
+Tested on MacOS and Linux.
 
 ### 1. Clone the Repository
 
-Start by cloning the repository containing the `torchkan` library and navigating into the project directory:
+Clone the `torchkan` repository and set up the project environment:
 
 ```bash
 git clone https://github.com/1ssb/torchkan.git
@@ -26,23 +28,46 @@ cd torchkan
 pip install -r requirements.txt
 ```
 
-If not already installed:
+### 2. Configure CUDA environment variables if they are not already set:
 
 ```bash
 export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 ```
 
-To run the MNIST training, make sure you configure wandb and run the script:
+### 3. Configure Weights & Biases (wandb)
+
+To track experiments and model performance with wandb:
+
+1. **Set Up wandb Account:**
+
+- Sign up or log in at [Weights & Biases](https://wandb.ai).
+- Find your API key in your account settings.
+
+2. **Initialize wandb in Your Project:**
+
+Before running the training script, initialize wandb:
 
 ```python
-python mnist.py
+wandb login
 ```
+
+When prompted, enter your API key. This will link your script executions to your wandb account.
+
+3. **Make sure to change the Entity name in the `mnist.py` file to your username instead of `1ssb`**
+
+This script will train the model, validate it, and log performance metrics using wandb.
 
 ## Contact
 
-For questions contact me at Subhransu.Bhattacharjee@anu.edu.au
+For any inquiries or support, contact: Subhransu.Bhattacharjee@anu.edu.au
 
 ## Contributions
 
-Contributions are welcome, please raise issues as required after commit Fin. This repository is still under development and testing. The code is licensed under the MIT License.
+Contributions are welcome. Please raise issues as necessary after commit "Fin.", scheduled end-June, 2024. The code is licensed under the MIT License.
+
+## References
+
+- [0] Ziming Liu et al., "KAN: Kolmogorov-Arnold Networks", 2024, arXiv. https://arxiv.org/abs/2404.19756
+- [1] https://github.com/KindXiaoming/pykan
+- [2] https://github.com/Blealtan/efficient-kan
