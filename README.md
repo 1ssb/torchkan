@@ -81,6 +81,10 @@ If you use this project in your research or wish to refer to the baseline result
 
 Contributions are welcome. Please raise issues as necessary after commit "Fin.", scheduled end-June, 2024. The code is licensed under the MIT License.
 
+## How to cite
+
+
+
 ## References
 
 - [0] Ziming Liu et al., "KAN: Kolmogorov-Arnold Networks", 2024, arXiv. https://arxiv.org/abs/2404.19756
