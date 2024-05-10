@@ -93,7 +93,7 @@ If you use this project in your research or wish to refer to the baseline result
 
 ## Contributions
 
-Contributions are welcome. Please raise issues as necessary after commit "Fin.", scheduled end-June, 2024. The code is licensed under the MIT License.
+Contributions are welcome. Please raise issues as necessary after commit "Fin.", scheduled end-June, 2024.
 
 ## References
 
