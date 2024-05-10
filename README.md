@@ -9,6 +9,8 @@ The KAN model has shown promising results amidst various GAMs since the 1980s. T
 
 As this model is still under study, further exploration into its full capabilities is ongoing.
 
+**PyPI pipeline might not work as expected: Number of changes have been made and not stabilized nor cleaned, it's recommended to use the git cloned version for now. I will repair that workflow pipeline ASA I can. Thanks!**
+
 ---
 
 ## Introducing KAL_Net
