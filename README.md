@@ -1,8 +1,7 @@
 # TorchKAN: A Simplified KAN Model (Version: 0)
 [![PyPI version](https://badge.fury.io/py/TorchKAN.svg)](https://pypi.org/project/TorchKAN/)
 
-This project demonstrates the training, validation, and quantization of the KAN model using PyTorch with CUDA acceleration. The `torchkan` model evaluates performance on the MNIST dataset, providing insights into the capabilities of Generalized Additive Models (GAMs).
-
+This project demonstrates the training, validation, and quantization of the KAN model using PyTorch with CUDA acceleration. The `torchkan` model evaluates performance on the MNIST dataset.
 ## Project Status: Under Development
 
 The KAN model has shown promising results amidst various GAMs since the 1980s. This implementation, inspired by various sources, achieves over 97% accuracy on the MNIST dataset. As this model is still under study, further exploration into its full capabilities is ongoing.
