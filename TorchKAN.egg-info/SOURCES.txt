@@ -1,0 +1,8 @@
+LICENSE.md
+README.md
+setup.py
+TorchKAN.egg-info/PKG-INFO
+TorchKAN.egg-info/SOURCES.txt
+TorchKAN.egg-info/dependency_links.txt
+TorchKAN.egg-info/requires.txt
+TorchKAN.egg-info/top_level.txt
