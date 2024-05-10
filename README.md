@@ -68,7 +68,7 @@ For any inquiries or support, contact: Subhransu.Bhattacharjee@anu.edu.au
 If you use this project in your research or wish to refer to the baseline results, please use the following BibTeX entry.
 
 ```bibtex
-@misc{your_project_name,
+@misc{torchkan,
   author = {Subhransu S. Bhattacharjee},
   title = {TorchKAN},
   year = {2024},
