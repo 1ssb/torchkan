@@ -93,7 +93,7 @@ If you use this project in your research or wish to refer to the baseline result
 
 ## Contributions
 
-Contributions are welcome. Please raise issues as necessary after commit "Fin.", scheduled end-June, 2024.
+Contributions are welcome. Please raise issues as necessary. All issues, as they come up, will be definitely solved to the best of my abilities, after commit "Fin.", scheduled end-June, 2024. Till then if you send a merge request, describe the problem, the fix and why it works.
 
 ## References
 
