@@ -6,7 +6,8 @@ import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from tqdm import tqdm
-from torchkan import KAN
+
+from KALnet import KAL_Net as KAN
 
 # Initialize Weights & Biases for experiment tracking and visualization
 wandb.init(project="quantized_model_evaluation", entity="1ssb")
