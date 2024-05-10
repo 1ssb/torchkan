@@ -14,8 +14,6 @@ class KAN(nn.Module):
         layers_hidden,  # List of integers defining the number of neurons in each hidden layer
         grid_size=5,  # The number of points in the B-spline grid
         spline_order=3,  # The order of the B-spline (degree of polynomial plus one)
-        scale_base=1.0,  # Scaling factor for the base linear transformation (not used in this code)
-        scale_spline=1.0,  # Scaling factor for the spline transformation (not used in this code)
         base_activation=nn.SiLU,  # Activation function to be applied to the input of the base linear operation
         grid_range=[-1, 1]  # Range over which the B-spline grid is defined
     ):
@@ -24,8 +22,6 @@ class KAN(nn.Module):
         self.layers_hidden = layers_hidden
         self.grid_size = grid_size
         self.spline_order = spline_order
-        self.scale_base = scale_base
-        self.scale_spline = scale_spline
         self.base_activation = base_activation()  # Instantiate the activation function
         self.grid_range = grid_range
 
