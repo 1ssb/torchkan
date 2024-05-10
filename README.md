@@ -65,7 +65,12 @@ When prompted, enter your API key. This will link your script executions to your
 
 3. **Make sure to change the Entity name in the `mnist.py` file to your username instead of `1ssb`**
 
-This script will train the model, validate it, and log performance metrics using wandb.
+## Usage
+
+```python
+python mnist.py
+```
+This script will train the model, validate it, quantise and log performance metrics using wandb.
 
 ## Contact
 
