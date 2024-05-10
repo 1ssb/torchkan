@@ -3,5 +3,3 @@ models
 data
 __pycache__
 build
-dist
-TorchKAN.egg-info
