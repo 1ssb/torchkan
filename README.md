@@ -31,7 +31,7 @@ cd torchkan
 pip install -r requirements.txt
 ```
 
-Alternately PyPi install as:
+Alternately PyPI install only the model as:
 
 ```bash
 pip install torchKAN
