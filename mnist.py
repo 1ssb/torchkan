@@ -1,4 +1,4 @@
-import torch, math, time, wandb, os
+import torch, math, time, wandb, os, ssl
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
@@ -7,6 +7,9 @@ import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from torchkan import KAN
+
+# Fixing SSL error 
+ssl._create_default_https_context = ssl._create_unverified_context
 
 # Initialize Weights & Biases for experiment tracking and visualization
 wandb.init(project="quantized_model_evaluation", entity="1ssb")
