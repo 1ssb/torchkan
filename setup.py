@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='TorchKAN',
-    version='0.1.1',
+    name='TorchKAN',  # Replace with your package name
+    version='0.1.1',  # Version 0 indicating early development
     packages=find_packages(),
     description='An easy-to-use PyTorch implementation of the Kolmogorov Arnold Network',
     long_description=open('README.md').read(),
@@ -15,8 +15,7 @@ setup(
         'torchvision',
         'wandb',
         'tqdm'
-    ]
-
+    ],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
