@@ -74,7 +74,7 @@ If you use this project in your research or wish to refer to the baseline result
   year = {2024},
   publisher = {GitHub},
   journal = {GitHub repository},
-  howpublished = {\url{https://github.com/1ssb/torchkan/tree/main}}
+  howpublished = {\url{https://github.com/1ssb/torchkan/}}
 }
 ```
 
