@@ -14,6 +14,32 @@ As this model is still under study, further exploration into its full capabiliti
 
 ---
 
+### Introduction to KANvolver Model
+
+The `KANvolver` model is a unique neural network designed for classifying MNIST dataset images with an impressive accuracy of 99.5%. It integrates convolutional neural networks (CNNs) with polynomial feature expansions to capture both simple and complex patterns effectively.
+
+### Model Architecture
+
+**Convolutional Feature Extraction:** The model starts with two convolutional layers, each paired with ReLU activation and max-pooling, to extract and condense spatial features from grayscale MNIST images. The first layer uses 16 filters of size 3x3, while the second expands the feature maps to 32 channels.
+
+**Polynomial Feature Transformation:** Following feature extraction, the model applies polynomial transformations up to the second order to the flattened convolutional outputs. This step enhances the model's ability to identify non-linear relationships among features.
+
+**Linear Layers and Batch Normalization:** The transformed features are processed through a series of linear layers with batch normalization and ReLU activations to stabilize training and introduce necessary non-linearity.
+
+### Forward Propagation
+
+1. **Input Reshaping:** Images are reshaped from vectors of 784 elements to 1x28x28 tensors for the CNN layers.
+2. **Feature Extraction:** Spatial features are extracted and pooled through the convolutional layers.
+3. **Polynomial Expansion:** Features undergo polynomial expansion to capture higher-order interactions.
+4. **Linear Processing:** The expanded features are processed by linear layers with normalization and activation.
+5. **Output Generation:** The network produces logits for each digit class in MNIST.
+
+### Performance and Conclusion
+
+The `KANvolver` model's success, marked by a 99.5% accuracy on MNIST, demonstrates its robustness in leveraging both CNNs and polynomial expansions for effective digit classification. While this model shows significant potential, there is always room for exploration and improvement in adapting it for broader image processing challenges.
+
+---
+
 ## Introducing KAL_Net
 
 The `KAL_Net` class represents a GAM network architecture called the **Kolmogorov Arnold Legendre Network (KAL-Net)**. This network leverages the mathematical properties of Legendre polynomials to enhance learning and generalization capabilities over traditional polynomial approximations like splines used in KANs.
