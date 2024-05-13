@@ -9,9 +9,9 @@ This project demonstrates the training, validation, and quantization of the KAN 
 
 The KAN model has shown promising results amidst various GAMs since the 1980s. This implementation, inspired by various sources, achieves over 97% accuracy with an eval time of 0.6 seconds and the quantised model achieves under 0.55 seconds on the MNIST dataset in 8 epochs on a Ubuntu 22.04 OS with a single Nvidia RTX4090. 
 
-As this model is still under study, further exploration into its full capabilities is ongoing. Please send in questions and crtiques. I do not have an exact background in Computing so I maybe making silly mistakes here and there, do kindly forgive them and contribute.
+*As this model is still under study, further exploration into its full capabilities is ongoing. Please send in questions and crtiques. I do not have an exact background in Computing so I maybe making silly mistakes here and there, do kindly forgive them and contribute. I will merge requests as soon as I can, kindly outline the problem, the fix and why it works.*
 
-**PyPI pipeline might not work as expected, is deprecated and not maintained as of now**
+**PyPI pipeline is deprecated and not maintained as of now and will be stabilised after Version 1 is released.**
 
 ---
 
@@ -88,12 +88,6 @@ Clone the `torchkan` repository and set up the project environment:
 git clone https://github.com/1ssb/torchkan.git
 cd torchkan
 pip install -r requirements.txt
-```
-
-Alternately PyPI install only the model as:
-
-```bash
-pip install torchKAN
 ```
 
 ### 2. Configure CUDA environment variables if they are not already set:
