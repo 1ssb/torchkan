@@ -1,9 +1,7 @@
 # TorchKAN: A Simplified KAN Model and a few variations
 ## A simplified KAN model
 ## KANvolver: Monomial basis functions for Image Classification for MNIST
-## KAL-Net: Kolmogorov Arnold Legendre Network: Using Legendre approximations
-
-[![PyPI version](https://badge.fury.io/py/TorchKAN.svg)](https://pypi.org/project/TorchKAN/)
+## KAL-Net: Kolmogorov Arnold Legendre Network: Legendre polynomials
 
 This project demonstrates the training, validation, and quantization of the KAN model using PyTorch with CUDA acceleration. The `torchkan` model evaluates performance on the MNIST dataset.
 
@@ -13,7 +11,7 @@ The KAN model has shown promising results amidst various GAMs since the 1980s. T
 
 As this model is still under study, further exploration into its full capabilities is ongoing. Please send in questions and crtiques. I do not have an exact background in Computing so I maybe making silly mistakes here and there, do kindly forgive them and contribute.
 
-**PyPI pipeline might not work as expected: Number of changes have been made and not stabilized nor cleaned, it's recommended to use the git cloned version for now. I will repair that workflow pipeline ASA I can. Thanks!**
+**PyPI pipeline might not work as expected, is deprecated and not maintained as of now**
 
 ---
 
