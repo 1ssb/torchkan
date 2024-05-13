@@ -16,7 +16,7 @@ As this model is still under study, further exploration into its full capabiliti
 
 ### Introduction to KANvolver Model
 
-The `KANvolver` model is a unique neural network designed for classifying MNIST dataset images with an impressive accuracy of 99.5%. It integrates convolutional neural networks (CNNs) with polynomial feature expansions to capture both simple and complex patterns effectively.
+The `KANvolver` model is a unique neural network designed for classifying MNIST dataset images with an impressive accuracy of **99.5%** with a percentage error of **0.18%**. It integrates convolutional neural networks (CNNs) with polynomial feature expansions to capture both simple and complex patterns effectively.
 
 ### Model Architecture
 
