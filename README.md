@@ -1,4 +1,6 @@
-# TorchKAN: A Simplified KAN Model (Version: 0) | KANvolver: Monomial basis functions for Image Classification for MNIST | KAL Net: Kolmogorov Arnold Legendre Network
+# TorchKAN: A Simplified KAN Model (Version: 0)
+# KANvolver: Monomial basis functions for Image Classification for MNIST
+# KAL-Net: Kolmogorov Arnold Legendre Network: Using Legendre approximations
 
 [![PyPI version](https://badge.fury.io/py/TorchKAN.svg)](https://pypi.org/project/TorchKAN/)
 
