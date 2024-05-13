@@ -11,7 +11,7 @@ This project demonstrates the training, validation, and quantization of the KAN 
 
 The KAN model has shown promising results amidst various GAMs since the 1980s. This implementation, inspired by various sources, achieves over 97% accuracy with an eval time of 0.6 seconds and the quantised model achieves under 0.55 seconds on the MNIST dataset in 8 epochs on a Ubuntu 22.04 OS with a single Nvidia RTX4090. 
 
-As this model is still under study, further exploration into its full capabilities is ongoing.
+As this model is still under study, further exploration into its full capabilities is ongoing. Please send in questions and crtiques. I do not have an exact background in Computing so I maybe making silly mistakes here and there, do kindly forgive them and contribute.
 
 **PyPI pipeline might not work as expected: Number of changes have been made and not stabilized nor cleaned, it's recommended to use the git cloned version for now. I will repair that workflow pipeline ASA I can. Thanks!**
 
