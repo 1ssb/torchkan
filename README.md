@@ -1,7 +1,3 @@
-Here's a professionally rewritten version of your README file:
-
----
-
 # TorchKAN: Simplified KAN Model with Variations
 
 TorchKAN introduces a simplified KAN model and its variations, including KANvolver and KAL-Net, designed for high-performance image classification and leveraging polynomial transformations for enhanced feature detection.
