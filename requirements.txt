@@ -2,3 +2,4 @@ torch
 torchvision
 wandb
 tqdm
+matplotlib
