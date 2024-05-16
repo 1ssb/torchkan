@@ -153,7 +153,7 @@ If this project is used in your research or referenced for baseline results, ple
 
 ## Contributions
 
-Contributions are welcome. Please raise issues as needed. All issues will be resolved to the best of my abilities after the commit "Fin.", scheduled for end-June 2024. If you submit a merge request, describe the problem, the solution, and its effectiveness.
+Contributions are welcome. Please raise issues as needed. Maintained solely by @1ssb.
 
 ## References
 
