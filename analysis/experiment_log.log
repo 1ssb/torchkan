@@ -1,1 +1,0 @@
-Running experiment with config: {'batch_size': 32, 'epochs': 25, 'learning_rate': 0.1, 'layers_hidden': [128, 64], 'polynomial_order': 1, 'base_activation': 'ReLU', 'device': 'cuda'}
