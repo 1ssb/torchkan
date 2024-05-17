@@ -31,7 +31,7 @@ I am conducting large-scale analysis to investigate how KANs can be made more in
 
 **Convolutional Feature Extraction:** The model begins with two convolutional layers, each paired with ReLU activation and max-pooling. The first layer employs 16 filters of size 3x3, while the second increases the feature maps to 32 channels.
 
-**Polynomial Feature Transformation:** Post feature extraction, the model applies polynomial transformations up to the second order to the flattened convolutional outputs, enhancing its ability to discern non-linear relationships.
+**Polynomial Feature Transformation:** Post feature extraction, the model applies polynomial transformations up to the n'th order to the flattened convolutional outputs, enhancing its ability to discern non-linear relationships.
 
 **How Monomials Work:** In the context of this model, monomials are polynomial powers of the input features. By computing monomials up to a specified order, the model can capture non-linear interactions between the features, potentially leading to richer and more informative representations for downstream tasks.
 
