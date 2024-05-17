@@ -13,7 +13,7 @@ This project showcases the training, validation, and quantization of the KAN mod
 
 The KAN model has demonstrated promising outcomes across various Generative Additive Models (GAMs) since the 1980s. Inspired by a range of sources, this first implementation in `KAN` in `torchkan.py` achieves over 97% accuracy with an evaluation time of 0.6 seconds. The quantized model further reduces this to under 0.55 seconds on the MNIST dataset within 8 epochs, utilizing an Nvidia RTX 4090 on Ubuntu 22.04.
 
-**My current understanding:** I am not sure of the huge hype with KANs, it is imperative to understand that learning weights for activation functions (MLPs) and learning the activation function themselves are pretty old ideas, its unclear how much interpretability they offer. Its also unclear how scalable, quantisable or efficient they are; as such it seems that the quantisability is not directly controllable as such and quantised evaluation on the base model leads to a ~8-16% drop in test performance. 
+**My current understanding:** I am not sure of the huge hype with KANs, it is imperative to understand that learning weights for activation functions (MLPs) and learning the activation function themselves are pretty old ideas, its unclear how much interpretability they offer. Its also unclear how scalable, quantisable or efficient they are; as such it seems that the quantisability is not an issue and quantised evaluation on the base model leads to only ~.8-.16% drop in test performance. 
 
 *Note: As the model is still being researched, further explorations into its full potential are ongoing. Contributions, questions, and critiques are welcome. I appreciate constructive feedback and contributions. Merge requests will be processed promptly, with a clear outline of the issue, the solution, and its effectiveness.*
 
@@ -23,7 +23,7 @@ The KAN model has demonstrated promising outcomes across various Generative Addi
 
 ### Introduction to the KANvolver Model
 
-The `KANvolver` model is a specialized neural network designed for classifying images from the MNIST dataset. It achieves an accuracy of 99.5% with a minimal error rate of 0.18%. This model combines convolutional neural networks (CNNs) with polynomial feature expansions, effectively capturing both simple and complex patterns.
+The `KANvolver` model is a specialized neural network designed for classifying images from the MNIST dataset. It achieves an at best accuracy of ~99.489% with a minimal error rate of 0.18%. This model combines convolutional neural networks (CNNs) with polynomial feature expansions, effectively capturing both simple and complex patterns.
 
 I am conducting large-scale analysis to investigate how KANs can be made more interpretable. Please check out the code at `analysis_exp.py`: do suggest any other analyses or tests.
 
