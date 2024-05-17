@@ -23,9 +23,9 @@ The KAN model has demonstrated promising outcomes across various Generative Addi
 
 ### Introduction to the KANvolver Model
 
-The `KANvolver` model is a specialized neural network designed for classifying images from the MNIST dataset. It achieves an at best accuracy of ~99.489% with a minimal error rate of 0.18%. This model combines convolutional neural networks (CNNs) with polynomial feature expansions, effectively capturing both simple and complex patterns.
+The `KANvolver` model is a specialized neural network designed for classifying images from the MNIST dataset. It achieves an at best accuracy of ~99.56% with a minimal error rate of 0.18%. This model combines convolutional neural networks (CNNs) with polynomial feature expansions, effectively capturing both simple and complex patterns.
 
-I am conducting large-scale analysis to investigate how KANs can be made more interpretable. Please check out the code at `analysis_exp.py`: do suggest any other analyses or tests.
+I am conducting large-scale analysis to investigate how KANs can be made more interpretable.
 
 ### Model Architecture
 
