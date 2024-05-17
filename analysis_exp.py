@@ -144,16 +144,23 @@ def run_experiment(config, log_file):
             images, labels = images.to(config['device']), labels.to(config['device'])
             outputs, monomials = model(images)
             _, predicted = torch.max(outputs.data, 1)
-            y_true.extend(labels.cpu().numpy())
-            y_pred.extend(predicted.cpu().numpy())
+            # Filter data outside the expected range (0-9)
+            valid_indices = [i for i in range(len(labels)) if labels[i] < 10]
+            y_true.extend(labels[valid_indices].cpu().numpy())
+            y_pred.extend(predicted[valid_indices].cpu().numpy())
             all_monomials.extend([m.cpu().numpy() for m in monomials])
     eval_end = time.time()
 
-    # Compute metrics
-    precision, recall, fscore, _ = precision_recall_fscore_support(y_true, y_pred, average='weighted')
-    accuracy = np.mean(np.array(y_true) == np.array(y_pred))
-    cm = confusion_matrix(y_true, y_pred)
-    report = classification_report(y_true, y_pred, target_names=[str(i) for i in range(10)])
+    try:
+        # Compute metrics safely
+        precision, recall, fscore, _ = precision_recall_fscore_support(y_true, y_pred, average='weighted', zero_division=0)
+        accuracy = np.mean(np.array(y_true) == np.array(y_pred))
+        cm = confusion_matrix(y_true, y_pred)
+        report = classification_report(y_true, y_pred, target_names=[str(i) for i in range(10)])
+    except ValueError as e:
+        print(f"Error in metric computation: {e}")
+        precision, recall, fscore, accuracy = 0.0, 0.0, 0.0, 0.0
+        report = "Metric computation failed."
     
     print("Logging results...")
     
