@@ -23,50 +23,6 @@ The KAN model has demonstrated promising outcomes across various Generative Addi
 
 ### Introduction to the KANvolver Model
 
-"""
-Module: KANvolution Neural Network with Monomial Transformations
-
-This module implements the KANvolver neural network, a specialized model that integrates polynomial transformations (monomials) 
-into the learning process. The primary objective of this model is to enhance the feature representation by utilizing polynomial 
-transformations of the input features before feeding them into the subsequent layers.
-
-Classes:
-- KANvolver: The core neural network model that extends from torch.nn.Module. This class initializes with a specified 
-  number of hidden layers and a polynomial order. The model uses convolutional layers for initial feature extraction, 
-  followed by a combination of linear layers and polynomial transformations.
-
-  Key Functions:
-  - __init__: Initializes the network with convolutional layers, hidden layers, and prepares the polynomial transformation 
-    mechanism by setting up weights for both base and polynomial layers.
-  - compute_efficient_monomials: Computes monomials of the input tensor up to the specified polynomial order. This function 
-    ensures efficient computation by leveraging broadcasting and tensor operations in PyTorch.
-  - forward: Defines the forward pass of the model where each layer computes its base output and polynomial transformed output, 
-    combines them, and applies batch normalization and a SiLU activation.
-
-- Trainer: A class to manage the training and validation process of the KANvolver model. It handles data loading, model updates, 
-  and performance tracking.
-
-  Key Functions:
-  - train_epoch: Processes one epoch of training, computing loss and accuracy for each batch, and captures monomial visualizations.
-  - validate_epoch: Evaluates the model on the validation set to compute loss and accuracy.
-  - fit: Runs the training for a specified number of epochs and logs the performance metrics using Weights & Biases.
-
-- visualize_monomials: A function to visualize the monomials computed by the model. For a given set of sample inputs, this 
-  function generates and saves heatmap visualizations of the monomials, which helps in understanding the transformations 
-  applied to the input features.
-
-Usage:
-The KANvolver model is instantiated, trained, and validated using the Trainer class. The visualize_monomials function is called 
-to observe the effect of polynomial transformations on the input data.
-
-Purpose:
-This architecture aims to explore how polynomial transformations of input features can influence the learning dynamics and 
-performance of a neural network, particularly in image recognition tasks like MNIST digit classification.
-
-
-"""
-
-
 The `KANvolver` model is a specialized neural network designed for classifying images from the MNIST dataset. It achieves an at best accuracy of ~99.489% with a minimal error rate of 0.18%. This model combines convolutional neural networks (CNNs) with polynomial feature expansions, effectively capturing both simple and complex patterns.
 
 I am conducting large-scale analysis to investigate how KANs can be made more interpretable. Please check out the code at `analysis_exp.py`: do suggest any other analyses or tests.
