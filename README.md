@@ -13,7 +13,7 @@ This project showcases the training, validation, and quantization of the KAN mod
 
 The KAN model has demonstrated promising outcomes across various Generative Additive Models (GAMs) since the 1980s. Inspired by a range of sources, this first implementation in `KAN` in `torchkan.py` achieves over 97% accuracy with an evaluation time of 0.6 seconds. The quantized model further reduces this to under 0.55 seconds on the MNIST dataset within 8 epochs, utilizing an Nvidia RTX 4090 on Ubuntu 22.04.
 
-**My current understanding:** I am not sure of the huge hype with KANs, it is imperative to understand that learning weights for activation functions (MLPs) and learning the activation function themselves are pretty old ideas, its unclear how much interpretability they offer. Its also unclear how scalable, quantisable or efficient they are; as such it seems that the quantisability is not an issue and quantised evaluation on the base model leads to only ~.6% drop in test performance. 
+**My current understanding:** I am not sure of the huge hype with KANs, it is imperative to understand that learning weights for activation functions (MLPs) and learning the activation function themselves are pretty old ideas, its unclear how much interpretability they offer. Its also unclear how scalable, quantisable or efficient they are; as such it seems that the quantisability is not an issue and quantised evaluation on the base model leads to only ~.8-.16% drop in test performance. 
 
 *Note: As the model is still being researched, further explorations into its full potential are ongoing. Contributions, questions, and critiques are welcome. I appreciate constructive feedback and contributions. Merge requests will be processed promptly, with a clear outline of the issue, the solution, and its effectiveness.*
 
@@ -23,7 +23,51 @@ The KAN model has demonstrated promising outcomes across various Generative Addi
 
 ### Introduction to the KANvolver Model
 
-The `KANvolver` model is a specialized neural network designed for classifying images from the MNIST dataset. It achieves an at best accuracy of ~99.56% with a minimal error rate of 0.18%. This model combines convolutional neural networks (CNNs) with polynomial feature expansions, effectively capturing both simple and complex patterns.
+"""
+Module: KANvolution Neural Network with Monomial Transformations
+
+This module implements the KANvolver neural network, a specialized model that integrates polynomial transformations (monomials) 
+into the learning process. The primary objective of this model is to enhance the feature representation by utilizing polynomial 
+transformations of the input features before feeding them into the subsequent layers.
+
+Classes:
+- KANvolver: The core neural network model that extends from torch.nn.Module. This class initializes with a specified 
+  number of hidden layers and a polynomial order. The model uses convolutional layers for initial feature extraction, 
+  followed by a combination of linear layers and polynomial transformations.
+
+  Key Functions:
+  - __init__: Initializes the network with convolutional layers, hidden layers, and prepares the polynomial transformation 
+    mechanism by setting up weights for both base and polynomial layers.
+  - compute_efficient_monomials: Computes monomials of the input tensor up to the specified polynomial order. This function 
+    ensures efficient computation by leveraging broadcasting and tensor operations in PyTorch.
+  - forward: Defines the forward pass of the model where each layer computes its base output and polynomial transformed output, 
+    combines them, and applies batch normalization and a SiLU activation.
+
+- Trainer: A class to manage the training and validation process of the KANvolver model. It handles data loading, model updates, 
+  and performance tracking.
+
+  Key Functions:
+  - train_epoch: Processes one epoch of training, computing loss and accuracy for each batch, and captures monomial visualizations.
+  - validate_epoch: Evaluates the model on the validation set to compute loss and accuracy.
+  - fit: Runs the training for a specified number of epochs and logs the performance metrics using Weights & Biases.
+
+- visualize_monomials: A function to visualize the monomials computed by the model. For a given set of sample inputs, this 
+  function generates and saves heatmap visualizations of the monomials, which helps in understanding the transformations 
+  applied to the input features.
+
+Usage:
+The KANvolver model is instantiated, trained, and validated using the Trainer class. The visualize_monomials function is called 
+to observe the effect of polynomial transformations on the input data.
+
+Purpose:
+This architecture aims to explore how polynomial transformations of input features can influence the learning dynamics and 
+performance of a neural network, particularly in image recognition tasks like MNIST digit classification.
+
+
+"""
+
+
+The `KANvolver` model is a specialized neural network designed for classifying images from the MNIST dataset. It achieves an at best accuracy of ~99.489% with a minimal error rate of 0.18%. This model combines convolutional neural networks (CNNs) with polynomial feature expansions, effectively capturing both simple and complex patterns.
 
 I am conducting large-scale analysis to investigate how KANs can be made more interpretable. Please check out the code at `analysis_exp.py`: do suggest any other analyses or tests.
 
@@ -33,7 +77,9 @@ I am conducting large-scale analysis to investigate how KANs can be made more in
 
 **Polynomial Feature Transformation:** Post feature extraction, the model applies polynomial transformations up to the second order to the flattened convolutional outputs, enhancing its ability to discern non-linear relationships.
 
-**Linear Layers and Batch Normalization:** These transformed features pass through several linear layers with batch normalization and ReLU activations, ensuring stable training and introducing essential non-linearity.
+**How Monomials Work:** In the context of this model, monomials are polynomial powers of the input features. By computing monomials up to a specified order, the model can capture non-linear interactions between the features, potentially leading to richer and more informative representations for downstream tasks.
+
+For a given input image, the monomials of its flattened pixel values are computed, which are then used to adjust the output of linear layers before activation. This approach introduces an additional dimension of feature interaction, allowing the network to learn more complex patterns in the data.
 
 ### Forward Propagation Process
 
