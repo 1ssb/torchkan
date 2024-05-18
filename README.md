@@ -47,8 +47,15 @@ For a given input image, the monomials of its flattened pixel values are compute
 
 ### Performance and Conclusion
 
-The `KANvolver` model's 99.5% accuracy on MNIST underscores its robustness in leveraging CNNs and polynomial expansions for effective digit classification. While showing significant potential, the model remains open for further adaptation and exploration in broader image processing challenges.
+The `KANvolver` model's 99.5% accuracy on MNIST underscores its robustness in leveraging CNNs and polynomial expansions for effective digit classification. While showing significant potential, the model remains open for further adaptation and exploration in broader image processing challenges. Here are the results:
 
+![Validation Integrated Heatmaps](./label_0_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
+![Validation Integrated Heatmaps](./label_1_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
+![Validation Integrated Heatmaps](./label_2_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
+![Validation Integrated Heatmaps](./label_4_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
+![Validation Integrated Heatmaps](./label_7_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
+
+Note KANvolver uses polynomials which are distinct from the original KANs[1].
 ---
 
 ## Introducing KAL_Net
