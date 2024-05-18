@@ -50,11 +50,11 @@ The `KANvolver` model's 99.5% accuracy on MNIST underscores its robustness in le
 
 ### Integrated Gradients for Primary Explainability
 
-![Validation Integrated Heatmaps](./label_0_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
-![Validation Integrated Heatmaps](./label_1_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
-![Validation Integrated Heatmaps](./label_2_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
-![Validation Integrated Heatmaps](./label_4_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
-![Validation Integrated Heatmaps](./label_7_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
+![Validation Integrated Heatmaps](./gifs/label_0_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
+![Validation Integrated Heatmaps](./gifs/label_1_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
+![Validation Integrated Heatmaps](./gifs/label_2_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
+![Validation Integrated Heatmaps](./gifs/label_4_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
+![Validation Integrated Heatmaps](./gifs/label_7_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
 
 Note KANvolver uses polynomials which are distinct from the original KANs[1].
 

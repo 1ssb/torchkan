@@ -5,7 +5,7 @@ def create_gif_from_images(image_dir, output_path, label_number, fps=10):
     images = []
     # Loop through potential image files based on the naming convention
     for epoch in range(1, 51):
-        image_path = os.path.join(image_dir, f'integrated_grads_epoch_{epoch}_img_{label_number}.png')
+        image_path = os.path.join(image_dir, f'./integrated_grads_epoch_{epoch}_img_{label_number}.png')
         if os.path.exists(image_path):
             img = Image.open(image_path)
             images.append(img)
@@ -26,5 +26,5 @@ if __name__ == "__main__":
     
     # Loop through the label mappings and create a GIF for each
     for label_num, label_text in label_mappings.items():
-        output_gif_path = f"./label_{label_text}_validation_integrated_heatmaps.gif"
+        output_gif_path = f"./gifs/label_{label_text}_validation_integrated_heatmaps.gif"
         create_gif_from_images(image_directory, output_gif_path, label_num, fps=10)

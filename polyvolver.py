@@ -3,6 +3,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchvision
+import numpy as np
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from tqdm import tqdm
@@ -109,19 +110,22 @@ class Trainer:
             ig_attr = (ig_attr - ig_attr.min()) / (ig_attr.max() - ig_attr.min())
             ig_img = to_pil_image(ig_attr, mode='L')
             
-            # Plot figure
             fig, ax = plt.subplots(1, 2, figsize=(12, 6))
             ax[0].imshow(original_img, cmap='gray')
             ax[0].set_title('Sample')
             ax[0].axis('off')
 
+            # Display absolute values of integrated gradients to ensure visibility of inhibitory and excitatory influences
+            ig_img = np.abs(ig_attr.squeeze().detach().cpu().numpy())
+
             # Display integrated gradients image with colorbar
-            im = ax[1].imshow(ig_img, cmap='hot')
+            im = ax[1].imshow(ig_img, cmap='hot', vmin=np.min(ig_img), vmax=np.max(ig_img))
             ax[1].set_title('Integrated Gradients')
             ax[1].axis('off')
 
             # Add a colorbar to the right of the integrated gradients image
-            fig.colorbar(im, ax=ax[1], orientation='vertical')
+            cbar = fig.colorbar(im, ax=ax[1], orientation='vertical')
+            cbar.set_label('Attribution Magnitude')
 
             # Add the epoch number at the top of the figure
             plt.suptitle(f'Epoch {epoch + 1}', fontsize=16)
