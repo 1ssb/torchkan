@@ -8,7 +8,6 @@ TorchKAN introduces a simplified KAN model and its variations, including KANvolv
 3. KAL-Net: Utilizing Legendre Polynomials in Kolmogorov Arnold Legendre Networks
 
 This project showcases the training, validation, and quantization of the KAN model using PyTorch with CUDA acceleration. The `torchkan` model is evaluated on the MNIST dataset, demonstrating significant accuracy improvements.
-
 ## Project Status: Under Development
 
 The KAN model has demonstrated promising outcomes across various Generative Additive Models (GAMs) since the 1980s. Inspired by a range of sources, this first implementation in `KAN` in `torchkan.py` achieves over 97% accuracy with an evaluation time of 0.6 seconds. The quantized model further reduces this to under 0.55 seconds on the MNIST dataset within 8 epochs, utilizing an Nvidia RTX 4090 on Ubuntu 22.04.
@@ -49,6 +48,8 @@ For a given input image, the monomials of its flattened pixel values are compute
 
 The `KANvolver` model's 99.5% accuracy on MNIST underscores its robustness in leveraging CNNs and polynomial expansions for effective digit classification. While showing significant potential, the model remains open for further adaptation and exploration in broader image processing challenges. Here are the results:
 
+### Integradient Gradients for Primary Explainability
+
 ![Validation Integrated Heatmaps](./label_0_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
 ![Validation Integrated Heatmaps](./label_1_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
 ![Validation Integrated Heatmaps](./label_2_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
@@ -56,6 +57,7 @@ The `KANvolver` model's 99.5% accuracy on MNIST underscores its robustness in le
 ![Validation Integrated Heatmaps](./label_7_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
 
 Note KANvolver uses polynomials which are distinct from the original KANs[1].
+
 ---
 
 ## Introducing KAL_Net
