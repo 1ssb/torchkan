@@ -26,6 +26,8 @@ The `KANvolver` model is a specialized neural network designed for classifying i
 
 I am conducting large-scale analysis to investigate how KANs can be made more interpretable.
 
+Thanks to @cometscome to have written this version in Julia: https://github.com/cometscome/FluxKAN.jl
+
 ### Model Architecture
 
 **Convolutional Feature Extraction:** The model begins with two convolutional layers, each paired with ReLU activation and max-pooling. The first layer employs 16 filters of size 3x3, while the second increases the feature maps to 32 channels.
