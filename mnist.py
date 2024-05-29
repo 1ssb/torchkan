@@ -7,6 +7,7 @@ import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
+#from KACnet import KAC_Net as KAN
 from KALnet import KAL_Net as KAN
 
 # Fixing SSL error 
