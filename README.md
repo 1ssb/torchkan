@@ -6,6 +6,7 @@ TorchKAN introduces a simplified KAN model and its variations, including KANvolv
 1. Overview of the Simplified KAN Model
 2. KANvolver: Monomial Basis Functions for MNIST Image Classification
 3. KAL-Net: Utilizing Legendre Polynomials in Kolmogorov Arnold Legendre Networks
+4. KAC-Net: Utilizing Chebyshev Polynomials 
 
 This project showcases the training, validation, and quantization of the KAN model using PyTorch with CUDA acceleration. The `torchkan` model is evaluated on the MNIST dataset, demonstrating significant accuracy improvements.
 ## Project Status: Under Development
