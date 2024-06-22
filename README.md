@@ -10,6 +10,7 @@ TorchKAN introduces a simplified KAN model and its variations, including KANvolv
 5. An analysis of Noise using a generalised KAN model
    
 This project showcases the training, validation, and quantization of the KAN model using PyTorch with CUDA acceleration. The `torchkan` model is evaluated on the MNIST dataset, demonstrating significant accuracy improvements.
+
 ## Project Status: Under Development
 
 The KAN model has demonstrated promising outcomes across various Generative Additive Models (GAMs) since the 1980s. Inspired by a range of sources, this first implementation in `KAN` in `torchkan.py` achieves over 97% accuracy with an evaluation time of 0.6 seconds. The quantized model further reduces this to under 0.55 seconds on the MNIST dataset within 8 epochs, utilizing an Nvidia RTX 4090 on Ubuntu 22.04.
@@ -63,7 +64,7 @@ The `KANvolver` model's 99.5% accuracy on MNIST underscores its robustness in le
 Note KANvolver uses polynomials which are distinct from the original KANs[1].
 
 ---
-KANs seem to be able to perform worse for a variety of choices than standard MLPs for functional approximation under low amount of noise. This needs to be further investigated.
+KANs seem to be able to handle lower amount of noise compary well as MLPs for functional approximation. This needs to be further investigated.
 
 To reproduce the results use the ```nKAN.py``` script.
 
