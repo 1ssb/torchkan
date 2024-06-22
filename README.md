@@ -7,7 +7,8 @@ TorchKAN introduces a simplified KAN model and its variations, including KANvolv
 2. KANvolver: Monomial Basis Functions for MNIST Image Classification
 3. KAL-Net: Utilizing Legendre Polynomials in Kolmogorov Arnold Legendre Networks
 4. KAC-Net: Utilizing Chebyshev Polynomials 
-
+5. An analysis of Noise using a generalised KAN model
+   
 This project showcases the training, validation, and quantization of the KAN model using PyTorch with CUDA acceleration. The `torchkan` model is evaluated on the MNIST dataset, demonstrating significant accuracy improvements.
 ## Project Status: Under Development
 
@@ -60,6 +61,13 @@ The `KANvolver` model's 99.5% accuracy on MNIST underscores its robustness in le
 ![Validation Integrated Heatmaps](./gifs/label_7_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
 
 Note KANvolver uses polynomials which are distinct from the original KANs[1].
+
+---
+KANs seem to be able to perform better for a variety of choices having several handicaps yet having larger SNR than standard MLPs for functional approximation. THis needs to be further investigated.
+
+To reproduce the results use the nKAN script.
+
+![SNR_plot](./gifs/snr_plot "SNR")
 
 ---
 
