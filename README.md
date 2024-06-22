@@ -63,11 +63,11 @@ The `KANvolver` model's 99.5% accuracy on MNIST underscores its robustness in le
 Note KANvolver uses polynomials which are distinct from the original KANs[1].
 
 ---
-KANs seem to be able to perform better for a variety of choices having several handicaps yet having larger SNR than standard MLPs for functional approximation. THis needs to be further investigated.
+KANs seem to be able to perform better for a variety of choices having several handicaps yet having larger SNR than standard MLPs for functional approximation under low amount of noise. This needs to be further investigated.
 
 To reproduce the results use the nKAN script.
 
-![SNR_plot](./gifs/snr_plot "SNR")
+![SNR_plot](./gifs/SNR/png "SNR")
 
 ---
 
