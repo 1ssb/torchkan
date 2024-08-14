@@ -171,10 +171,6 @@ If this project is used in your research or referenced for baseline results, ple
   author = {Subhransu S. Bhattacharjee},
   title = {TorchKAN: Simplified KAN Model with Variations},
   year = {2024},
-  publisher =
-
- {GitHub},
-  journal = {GitHub repository},
   howpublished = {\url{https://github.com/1ssb/torchkan/}}
 }
 ```
