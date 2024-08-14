@@ -1,23 +1,27 @@
+Here is the refined version with correct grammar:
+
+---
+
 # TorchKAN: Simplified KAN Model with Variations
 
-TorchKAN introduces a simplified KAN model and its variations, including KANvolver and KAL-Net, designed for high-performance image classification and leveraging polynomial transformations for enhanced feature detection.
+TorchKAN introduces a simplified KAN model and its variations, including KANvolver and KAL-Net, designed for high-performance image classification by leveraging polynomial transformations for enhanced feature detection.
 
 ## Table of Contents
 1. Overview of the Simplified KAN Model
 2. KANvolver: Monomial Basis Functions for MNIST Image Classification
 3. KAL-Net: Utilizing Legendre Polynomials in Kolmogorov Arnold Legendre Networks
-4. KAC-Net: Utilizing Chebyshev Polynomials 
-5. An analysis of Noise using a generalised KAN model: For curve fitting or regression problems use the `nKAN.py` script as a general structure.
-   
+4. KAC-Net: Utilizing Chebyshev Polynomials
+5. Noise Analysis Using a Generalized KAN Model: For curve fitting or regression problems, use the `nKAN.py` script as a general structure.
+
 This project showcases the training, validation, and quantization of the KAN model using PyTorch with CUDA acceleration. The `torchkan` model is evaluated on the MNIST dataset, demonstrating significant accuracy improvements.
 
 ## Project Status: Under Development
 
-The KAN model has demonstrated promising outcomes across various Generative Additive Models (GAMs) since the 1980s. Inspired by a range of sources, this first implementation in `KAN` in `torchkan.py` achieves over 97% accuracy with an evaluation time of 0.6 seconds. The quantized model further reduces this to under 0.55 seconds on the MNIST dataset within 8 epochs, utilizing an Nvidia RTX 4090 on Ubuntu 22.04.
+The KAN model has demonstrated promising outcomes across various Generative Additive Models (GAMs) since the 1980s. Inspired by a range of sources, this initial implementation of `KAN` in `torchkan.py` achieves over 97% accuracy with an evaluation time of 0.6 seconds. The quantized model further reduces this time to under 0.55 seconds on the MNIST dataset within 8 epochs, utilizing an Nvidia RTX 4090 on Ubuntu 22.04.
 
-**My current understanding:** I am not sure of the huge hype with KANs, it is imperative to understand that learning weights for activation functions (MLPs) and learning the activation function themselves are pretty old ideas, its unclear how much interpretability they offer. Its also unclear how scalable, quantisable or efficient they are; as such it seems that the quantisability is not an issue and quantised evaluation on the base model leads to only ~0.6% drop in test performance. 
+**Current Understanding:** While there is considerable hype around KANs, it's important to recognize that learning weights for activation functions (MLPs) and the activation functions themselves are established ideas. The extent of interpretability, scalability, quantizability, or efficiency they offer remains unclear. However, quantizability does not seem to be an issue, as the quantized evaluation on the base model leads to only ~0.6% drop in test performance.
 
-*Note: As the model is still being researched, further explorations into its full potential are ongoing. Contributions, questions, and critiques are welcome. I appreciate constructive feedback and contributions. Merge requests will be processed promptly, with a clear outline of the issue, the solution, and its effectiveness.*
+*Note: As the model is still under research, further exploration into its full potential is ongoing. Contributions, questions, and critiques are welcome. Constructive feedback and contributions are appreciated, and merge requests will be processed promptly, with a clear outline of the issue, the solution, and its effectiveness.*
 
 **Note: The PyPI pipeline is currently deprecated and will be stabilized following the release of Version 1.**
 
@@ -25,21 +29,21 @@ The KAN model has demonstrated promising outcomes across various Generative Addi
 
 ### Introduction to the KANvolver Model
 
-The `KANvolver` model is a specialized neural network designed for classifying images from the MNIST dataset. It achieves an at best accuracy of ~99.56% with a minimal error rate of 0.18%. This model combines convolutional neural networks (CNNs) with polynomial feature expansions, effectively capturing both simple and complex patterns.
+The `KANvolver` model is a specialized neural network designed for classifying images from the MNIST dataset. It achieves an accuracy of ~99.56% with a minimal error rate of 0.18%. This model combines convolutional neural networks (CNNs) with polynomial feature expansions, effectively capturing both simple and complex patterns.
 
 I am conducting large-scale analysis to investigate how KANs can be made more interpretable.
 
-Thanks to @cometscome to have written this version in Julia: https://github.com/cometscome/FluxKAN.jl
+Thanks to @cometscome for writing this version in Julia: https://github.com/cometscome/FluxKAN.jl
 
 ### Model Architecture
 
 **Convolutional Feature Extraction:** The model begins with two convolutional layers, each paired with ReLU activation and max-pooling. The first layer employs 16 filters of size 3x3, while the second increases the feature maps to 32 channels.
 
-**Polynomial Feature Transformation:** Post feature extraction, the model applies polynomial transformations up to the n'th order to the flattened convolutional outputs, enhancing its ability to discern non-linear relationships.
+**Polynomial Feature Transformation:** After feature extraction, the model applies polynomial transformations up to the n-th order to the flattened convolutional outputs, enhancing its ability to discern non-linear relationships.
 
-**How Monomials Work:** In the context of this model, monomials are polynomial powers of the input features. By computing monomials up to a specified order, the model can capture non-linear interactions between the features, potentially leading to richer and more informative representations for downstream tasks.
+**How Monomials Work:** In this model, monomials are polynomial powers of the input features. By computing monomials up to a specified order, the model captures non-linear interactions between the features, potentially leading to richer and more informative representations for downstream tasks.
 
-For a given input image, the monomials of its flattened pixel values are computed, which are then used to adjust the output of linear layers before activation. This approach introduces an additional dimension of feature interaction, allowing the network to learn more complex patterns in the data.
+For a given input image, the monomials of its flattened pixel values are computed and then used to adjust the output of linear layers before activation. This approach introduces an additional dimension of feature interaction, allowing the network to learn more complex patterns in the data.
 
 ### Forward Propagation Process
 
@@ -51,7 +55,7 @@ For a given input image, the monomials of its flattened pixel values are compute
 
 ### Performance and Conclusion
 
-The `KANvolver` model's 99.5% accuracy on MNIST underscores its robustness in leveraging CNNs and polynomial expansions for effective digit classification. While showing significant potential, the model remains open for further adaptation and exploration in broader image processing challenges. Here are the results:
+The `KANvolver` model's 99.5% accuracy on MNIST underscores its robustness in leveraging CNNs and polynomial expansions for effective digit classification. While it shows significant potential, the model remains open for further adaptation and exploration in broader image processing challenges. Here are the results:
 
 ### Integrated Gradients for Primary Explainability
 
@@ -61,12 +65,12 @@ The `KANvolver` model's 99.5% accuracy on MNIST underscores its robustness in le
 ![Validation Integrated Heatmaps](./gifs/label_4_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
 ![Validation Integrated Heatmaps](./gifs/label_7_validation_integrated_heatmaps.gif "Validation Integrated Heatmaps")
 
-Note KANvolver uses polynomials which are distinct from the original KANs[1].
+Note that KANvolver uses polynomials that are distinct from the original KANs[1].
 
 ---
-KANs seem to be able to handle lower amount of noise compary well as MLPs for functional approximation. This needs to be further investigated.
+KANs seem to handle noise better compared to MLPs for functional approximation. This requires further investigation.
 
-To reproduce the results use the ```nKAN.py``` script.
+To reproduce the results, use the `nKAN.py` script.
 
 ![SNR_plot](./gifs/SNR.png "SNR")
 
@@ -171,7 +175,9 @@ If this project is used in your research or referenced for baseline results, ple
   author = {Subhransu S. Bhattacharjee},
   title = {TorchKAN: Simplified KAN Model with Variations},
   year = {2024},
-  publisher = {GitHub},
+  publisher =
+
+ {GitHub},
   journal = {GitHub repository},
   howpublished = {\url{https://github.com/1ssb/torchkan/}}
 }
