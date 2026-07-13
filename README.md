@@ -1,31 +1,28 @@
-# TorchKAN: Simplified KAN Model with Variations
+# TorchKAN: Kolmogorov–Arnold Networks in PyTorch
 
-TorchKAN introduces a simplified KAN model and its variations, including KANvolver and KAL-Net, designed for high-performance image classification by leveraging polynomial transformations for enhanced feature detection.
+An independent PyTorch implementation of Kolmogorov–Arnold Networks (KANs) and several polynomial variants — spline, Legendre (KAL-Net), Chebyshev (KAC-Net), and a convolutional variant (KANvolver) — with classification and regression experiments, CUDA execution, post-training quantisation, and Integrated-Gradients interpretability.
 
-## Table of Contents
-1. Overview of the Simplified KAN Model
-2. KANvolver: Monomial Basis Functions for MNIST Image Classification
-3. KAL-Net: Utilizing Legendre Polynomials in Kolmogorov Arnold Legendre Networks
-4. KAC-Net: Utilizing Chebyshev Polynomials
-5. Noise Analysis Using a Generalized KAN Model: For curve fitting or regression problems, use the `nKAN.py` script as a general structure.
+## Contents
+1. KANvolver — monomial-basis convolutional model for MNIST classification
+2. KAL-Net — Legendre-polynomial KAN
+3. KAC-Net — Chebyshev-polynomial KAN
+4. nKAN — generalised KAN for curve fitting / regression (`nKAN.py`)
 
-This project showcases the training, validation, and quantization of the KAN model using PyTorch with CUDA acceleration. The `torchkan` model is evaluated on the MNIST dataset, demonstrating significant accuracy improvements.
+This repository trains, validates, and quantises KAN variants in PyTorch with CUDA acceleration, evaluated on MNIST.
 
-## Project Status: Under Development
+## Status
 
-The KAN model has demonstrated promising outcomes across various Generative Additive Models (GAMs) since the 1980s. Inspired by a range of sources, this initial implementation of `KAN` in `torchkan.py` achieves over 97% accuracy with an evaluation time of 0.6 seconds. The quantized model further reduces this time to under 0.55 seconds on the MNIST dataset within 8 epochs, utilizing an Nvidia RTX 4090 on Ubuntu 22.04.
+Stable and maintained on a best-effort basis; the experiments and quantisation results below reflect the code in this repository. The base `KAN` in `torchkan.py` reaches ~97% accuracy on MNIST (8 epochs, RTX 4090).
 
 **Current Understanding:** While there is considerable hype around KANs, it's important to recognize that learning weights for activation functions (MLPs) and the activation functions themselves are established ideas. The extent of interpretability, scalability, quantizability, or efficiency they offer remains unclear. However, quantizability does not seem to be an issue, as the quantized evaluation on the base model leads to only ~0.6% drop in test performance.
 
-*Note: As the model is still under research, further exploration into its full potential is ongoing. Contributions, questions, and critiques are welcome. Constructive feedback and contributions are appreciated, and merge requests will be processed promptly, with a clear outline of the issue, the solution, and its effectiveness.*
-
-**Note: The PyPI pipeline is currently deprecated and will be stabilized following the release of Version 1.**
+*Note: KANs are an active research area; contributions, questions, and critiques are welcome.*
 
 ---
 
 ### Introduction to the KANvolver Model
 
-The `KANvolver` model is a specialized neural network designed for classifying images from the MNIST dataset. It achieves an accuracy of ~99.56% with a minimal error rate of 0.18%. This model combines convolutional neural networks (CNNs) with polynomial feature expansions, effectively capturing both simple and complex patterns.
+The `KANvolver` model is a specialized neural network designed for classifying images from the MNIST dataset. It reaches ~99.5% accuracy on MNIST, combining convolutional feature extraction with polynomial feature expansions.
 
 I am conducting large-scale analysis to investigate how KANs can be made more interpretable.
 
@@ -51,7 +48,7 @@ For a given input image, the monomials of its flattened pixel values are compute
 
 ### Performance and Conclusion
 
-The `KANvolver` model's 99.5% accuracy on MNIST underscores its robustness in leveraging CNNs and polynomial expansions for effective digit classification. While it shows significant potential, the model remains open for further adaptation and exploration in broader image processing challenges. Here are the results:
+The `KANvolver` reaches ~99.5% accuracy on MNIST using CNN features with polynomial expansions. Results:
 
 ### Integrated Gradients for Primary Explainability
 
@@ -89,7 +86,7 @@ The `KAL_Net` represents the **Kolmogorov Arnold Legendre Network (KAL-Net)**, a
 1. **Weight Initialization:** Weights are initialized using the Kaiming uniform distribution, optimized for linear nonlinearity, ensuring a robust start for training.
 2. **Dynamic Weight and Normalization Management:** Manages weights for base transformations and polynomial expansions dynamically, scaling with input features and polynomial order.
 
-## Advantages Over Splines (Pending Rigorous Empirical Testing)
+## Motivation vs. Splines
 
 - **Flexibility in High-Dimensional Spaces:** Legendre polynomials offer a more systematic approach to capturing interactions in high-dimensional data compared to splines, which often require manual knot placement and struggle with dimensionality issues.
 - **Analytical Efficiency:** The caching and recurrence relations in Legendre polynomial computations minimize the computational overhead associated with spline evaluations, especially in high dimensions.
@@ -97,8 +94,8 @@ The `KAL_Net` represents the **Kolmogorov Arnold Legendre Network (KAL-Net)**, a
 
 ## Performance Metrics
 
-- **Accuracy:** `KAL_Net` achieved a remarkable **97.8% accuracy on the MNIST dataset**, showcasing its ability to handle complex patterns in image data.
-- **Efficiency:** The average forward pass takes only **500 microseconds**, illustrating the computational efficiency brought by caching Legendre polynomials and optimizing tensor operations in PyTorch.
+- **Accuracy:** `KAL_Net` reaches **~97.8% accuracy on MNIST**.
+- **Efficiency:** Legendre-polynomial computations are cached (`functools.lru_cache`) to reduce redundant work in the forward pass.
 
 ## Prerequisites
 
