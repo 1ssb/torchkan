@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="TorchKAN — an independent PyTorch implementation of Kolmogorov–Arnold Networks (spline, Legendre, Chebyshev, and convolutional variants) with CUDA execution, post-training quantisation, and Integrated-Gradients interpretability.">
+  <title>TorchKAN — Kolmogorov–Arnold Networks in PyTorch</title>
+  <link rel="canonical" href="https://1ssb.github.io/torchkan/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="TorchKAN — Kolmogorov–Arnold Networks in PyTorch">
+  <meta property="og:description"
+    content="PyTorch KANs with spline, Legendre, Chebyshev, and convolutional variants; CUDA, quantisation, and interpretability.">
+  <meta property="og:url" content="https://1ssb.github.io/torchkan/">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --panel: #0f131b;
+      --panel-2: #141a24;
+      --border: #222b38;
+      --text: #e6edf3;
+      --muted: #9aa4b2;
+      --accent: #00b4d8;
+      --accent-2: #ffb703;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(0, 180, 216, 0.10), transparent 60%),
+        radial-gradient(900px 500px at 0% 0%, rgba(255, 183, 3, 0.06), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    header.hero {
+      padding: 88px 0 48px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero .sub {
+      font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+      color: var(--text);
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    .hero p.lede {
+      color: var(--muted);
+      max-width: 640px;
+      margin: 18px auto 0;
+      font-size: 1.02rem;
+    }
+
+    .badges {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .badges img {
+      height: 20px;
+    }
+
+    .cta {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      text-decoration: none;
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #06121a;
+      border-color: transparent;
+    }
+
+    /* Sections */
+    section {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    section h2 .hash {
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      margin-right: 8px;
+    }
+
+    section p.section-lede {
+      color: var(--muted);
+      margin-bottom: 24px;
+      max-width: 720px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .card h3 code {
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* Metrics */
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+    }
+
+    .metric {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      text-align: center;
+    }
+
+    .metric .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .metric .lbl {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 14px;
+    }
+
+    /* Code blocks */
+    pre {
+      background: #0a0e15;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+
+    pre code,
+    code.inline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+      color: #d7e3ee;
+    }
+
+    code.inline {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1px 6px;
+      color: var(--accent);
+    }
+
+    /* Interpretability gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .gallery figure {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .gallery img {
+      width: 100%;
+      display: block;
+      background: #fff;
+    }
+
+    .gallery figcaption {
+      padding: 10px 14px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 48px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--muted);
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    ul.tight {
+      margin: 0 0 0 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    ul.tight li {
+      margin: 4px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <h1>TorchKAN</h1>
+      <div class="sub">Kolmogorov–Arnold Networks in PyTorch</div>
+      <p class="lede">An independent PyTorch implementation of KANs and several polynomial variants — spline, Legendre,
+        Chebyshev, and convolutional — with classification and regression experiments, CUDA execution, post-training
+        quantisation, and Integrated-Gradients interpretability.</p>
+      <div class="badges">
+        <img src="https://img.shields.io/github/stars/1ssb/torchkan?style=flat&color=00b4d8" alt="GitHub stars">
+        <img src="https://img.shields.io/pypi/v/torchkan?color=ffb703" alt="PyPI version">
+        <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license">
+        <img src="https://img.shields.io/badge/python-3.9%2B-blue" alt="Python 3.9+">
+        <img src="https://img.shields.io/badge/PyTorch-CUDA-ee4c2c" alt="PyTorch CUDA">
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/1ssb/torchkan">Code on GitHub</a>
+        <a class="btn" href="https://pypi.org/project/torchkan/">PyPI</a>
+        <a class="btn" href="#cite">Cite</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="overview">
+      <h2><span class="hash">#</span>Overview</h2>
+      <p class="section-lede">TorchKAN trains, validates, and quantises Kolmogorov–Arnold Network variants in PyTorch
+        with CUDA acceleration, evaluated on MNIST for classification and on synthetic functions for regression.
+        Rather than treating KANs as a black box, it pairs each variant with interpretability via Integrated
+        Gradients.</p>
+      <ul class="tight">
+        <li>Learnable activation functions realised with orthogonal polynomial bases instead of fixed non-linearities.</li>
+        <li>Post-training quantisation with negligible accuracy loss (~0.6% on the base model).</li>
+        <li>Primary explainability through Integrated-Gradients attribution maps.</li>
+      </ul>
+    </section>
+
+    <section id="variants">
+      <h2><span class="hash">#</span>Model variants</h2>
+      <p class="section-lede">A family of KAN architectures, each swapping the basis used to model per-edge functions.</p>
+      <div class="grid">
+        <div class="card">
+          <h3><code>KANvolver</code></h3>
+          <p>Convolutional feature extraction followed by monomial (polynomial) feature expansion for MNIST
+            classification.</p>
+        </div>
+        <div class="card">
+          <h3>KAL-Net <code>Legendre</code></h3>
+          <p>A generalised additive model using Legendre polynomials with cached recurrences for efficient forward
+            passes.</p>
+        </div>
+        <div class="card">
+          <h3>KAC-Net <code>Chebyshev</code></h3>
+          <p>Chebyshev-polynomial KAN for stable high-order approximation.</p>
+        </div>
+        <div class="card">
+          <h3>Base KAN <code>spline</code></h3>
+          <p>The spline-basis KAN in <code class="inline">torchkan.py</code>, the reference model for quantisation
+            experiments.</p>
+        </div>
+        <div class="card">
+          <h3>nKAN <code>regression</code></h3>
+          <p>Generalised KAN for curve fitting and noisy function approximation (<code class="inline">nKAN.py</code>).</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="results">
+      <h2><span class="hash">#</span>Results on MNIST</h2>
+      <p class="section-lede">Representative accuracies from the experiments in the repository.</p>
+      <div class="metrics">
+        <div class="metric">
+          <div class="num">~99.5%</div>
+          <div class="lbl">KANvolver</div>
+        </div>
+        <div class="metric">
+          <div class="num">~97.8%</div>
+          <div class="lbl">KAL-Net (Legendre)</div>
+        </div>
+        <div class="metric">
+          <div class="num">~97%</div>
+          <div class="lbl">Base KAN (8 epochs)</div>
+        </div>
+        <div class="metric">
+          <div class="num">~0.6%</div>
+          <div class="lbl">Drop after quantisation</div>
+        </div>
+      </div>
+      <p class="note">Base KAN trained for 8 epochs on an RTX 4090. Numbers reflect the code in this repository and are
+        intended as reproducible baselines, not leaderboard claims.</p>
+    </section>
+
+    <section id="interpretability">
+      <h2><span class="hash">#</span>Interpretability</h2>
+      <p class="section-lede">Integrated-Gradients attribution over validation samples, showing which pixels drive each
+        prediction as training progresses.</p>
+      <div class="gallery">
+        <figure>
+          <img src="gifs/label_0_validation_integrated_heatmaps.gif" alt="Integrated-Gradients heatmap for digit 0"
+            loading="lazy">
+          <figcaption>Digit 0 — attribution over epochs</figcaption>
+        </figure>
+        <figure>
+          <img src="gifs/label_2_validation_integrated_heatmaps.gif" alt="Integrated-Gradients heatmap for digit 2"
+            loading="lazy">
+          <figcaption>Digit 2 — attribution over epochs</figcaption>
+        </figure>
+        <figure>
+          <img src="gifs/label_7_validation_integrated_heatmaps.gif" alt="Integrated-Gradients heatmap for digit 7"
+            loading="lazy">
+          <figcaption>Digit 7 — attribution over epochs</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="install">
+      <h2><span class="hash">#</span>Install</h2>
+      <p class="section-lede">Requires Python 3.9+ and a PyTorch build matching your CUDA toolkit.</p>
+      <pre><code>git clone https://github.com/1ssb/torchkan.git
+cd torchkan
+pip install -r requirements.txt</code></pre>
+      <p class="note">Then run the MNIST pipeline — training, validation, quantisation, and logging:</p>
+      <pre><code>python mnist.py</code></pre>
+    </section>
+
+    <section id="cite">
+      <h2><span class="hash">#</span>Cite</h2>
+      <p class="section-lede">If TorchKAN supports your research or baselines, please cite it.</p>
+      <pre><code>@misc{torchkan,
+  author = {Subhransu S. Bhattacharjee},
+  title  = {{TorchKAN}: Simplified {KAN} Model with Variations},
+  year   = {2024},
+  howpublished = {\url{https://github.com/1ssb/torchkan/}}
+}</code></pre>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Built and maintained by
+        <a href="https://1ssb.github.io/">Subhransu S. Bhattacharjee</a> ·
+        <a href="https://github.com/1ssb/torchkan">GitHub</a> ·
+        <a href="https://pypi.org/project/torchkan/">PyPI</a> ·
+        MIT License
+      </p>
+    </div>
+  </footer>
+</body>
+
+</html>
